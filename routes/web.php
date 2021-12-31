@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StuffController;
@@ -37,4 +38,7 @@ Route::get('/register',[RegisterController::class,'index'] );
 Route::post('/register',[RegisterController::class,'register'] );
 
 
-//home
+//cart router
+Route::get('/cart', [CartController::class,'index']);
+Route::post('/delete/{id}', [CartController::class,'delete']);
+Route::post('/konfirmasi', [CartController::class,'konfirmasi']);

@@ -8,6 +8,8 @@ use App\Models\Order_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+// use SweetAlert;
+use SweetAlert;
 
 
 class StuffController extends Controller
@@ -21,6 +23,7 @@ class StuffController extends Controller
             'items' => $items
         ] );
     }
+    
 
     public function items($id)
     {
@@ -94,6 +97,8 @@ class StuffController extends Controller
         $new_total_price->update();
         
 
+        // SweetAlert::success('Success Message', 'Optional Title');
+        
         return redirect('/');
 
     }
