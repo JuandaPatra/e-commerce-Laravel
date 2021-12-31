@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\StuffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+Route::get('/', [StuffController::class, 'index']);
+Route::get('/items/{id}', [StuffController::class, 'items']);
+Route::post('/items/{id}', [StuffController::class, 'order']);
+
+
+//login router
+Route::get('/login',[LoginController::class,'index'] );
+Route::post('/login',[LoginController::class,'login'] );
+
+//logout router
+Route::get('logout', [LoginController::class,'logout']);
+
+
+//register router
+Route::get('/register',[RegisterController::class,'index'] );
+Route::post('/register',[RegisterController::class,'register'] );
+
+
+//home
