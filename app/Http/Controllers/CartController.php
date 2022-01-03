@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Order_detail;
 use App\Models\Stuff;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,13 @@ class CartController extends Controller
     public function konfirmasi()
     {
         $order =  Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
+
+        $user = User::where('id', Auth::user()->id)->first();
+
+        if(empty($user->phone_number) || empty($user->address))
+        {
+            return redirect('/');
+        }
 
         $order->status = 1;
         $orderid = $order->id;

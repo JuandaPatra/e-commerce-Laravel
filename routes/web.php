@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StuffController;
 use Illuminate\Support\Facades\Route;
@@ -42,3 +43,8 @@ Route::post('/register',[RegisterController::class,'register'] );
 Route::get('/cart', [CartController::class,'index']);
 Route::post('/delete/{id}', [CartController::class,'delete']);
 Route::post('/konfirmasi', [CartController::class,'konfirmasi']);
+
+
+//profile router
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/profile-edit', [ProfileController::class, 'edit']);
