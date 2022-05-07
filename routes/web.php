@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CmsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
@@ -27,7 +29,7 @@ Route::post('/items/{id}', [StuffController::class, 'order']);
 
 
 //login router
-Route::get('/login',[LoginController::class,'index'] );
+Route::get('/login',[LoginController::class,'index'] )->middleware('guest');
 Route::post('/login',[LoginController::class,'login'] );
 
 //logout router
@@ -48,3 +50,16 @@ Route::post('/konfirmasi', [CartController::class,'konfirmasi']);
 //profile router
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile-edit', [ProfileController::class, 'edit']);
+
+
+Route::get('/admin', [CmsController::class, 'index']);
+Route::get('/admin/addProduct', [CmsController::class, 'addProduct']);
+Route::post('/admin/addProduct', [CmsController::class, 'store']);
+Route::get('/admin/deleteProduct/{id}', [CmsController::class, 'delete']);
+Route::get('/admin/editProduct/{id}', [CmsController::class, 'edit']);
+Route::post('/admin/editProduct/{id}', [CmsController::class, 'update']);
+
+// Route::resources('admin', [AdminController::class]);
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [CmsController::class, 'index']);
+});

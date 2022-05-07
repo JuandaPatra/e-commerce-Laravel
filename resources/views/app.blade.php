@@ -30,7 +30,11 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if(auth()->user())
+                                {{auth()->user()->username }}
+                            @else
                                 Dropdown
+                            @endif
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/profile">Profile</a></li>
@@ -52,6 +56,7 @@
         <div class="col-md-6 offset-md-3">
             <h1>Hello</h1>
             @yield('container')
+            <!-- @yield('content') -->
     
         </div>
 
